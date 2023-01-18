@@ -88,8 +88,8 @@ pipeline {
                         [allowMissing         : false,
                         alwaysLinkToLastBuild: true,
                         keepAll              : true,
-                        reportDir            : 'worblehat-acceptancetests/target/cucumber',
-                        reportFiles          : 'index.html',
+                        reportDir            : 'worblehat-acceptancetests/target',
+                        reportFiles          : 'cucumber.html',
                         reportName           : 'Acceptance Test Report',
                         reportTitles         : 'Acceptance Test Report']
                     )
