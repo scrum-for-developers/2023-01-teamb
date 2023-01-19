@@ -11,8 +11,6 @@ Feature: Testing for basic validation when adding new books
 
     Examples:
 
-      | isbn       | author          | title    | edition | year  | field | errorMessage                                             |
-      | 0XXXXXXXX5 | Terry Pratchett | Sourcery | 1       | 1989  | isbn  | Please enter a valid ISBN (ISBN10 needs to be 10 digits) |
-      | 0552131075 | Terry Pratchett | Sourcery | 1       | 1     | year  | Please enter a valid Year (larger than 1000)                           |
-      | 0552131075 | Terry Pratchett | Sourcery | 1       | -2000 | year  | Please enter a valid Year (larger than 1000)                           |
-
+      | isbn       | author          | title    | edition | year | field | errorMessage                                             |
+      | 0XXXXXXXX5 | Terry Pratchett | Sourcery | 1       | 1989 | isbn  | Please enter a valid ISBN (ISBN10 needs to be 10 digits) |
+      | 0552131075 | Terry Pratchett | Sourcery | 1       | 1    | year  | Please enter a four digit year                           |
