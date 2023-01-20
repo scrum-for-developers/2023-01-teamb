@@ -41,7 +41,9 @@ public class BorrowBookController {
     if (result.hasErrors()) {
       return BORROW;
     }
-    String sanitizedIsbn = borrowFormData.getIsbn().trim();
+    String sanitizedIsbn = borrowFormData.getIsbn() == null
+      ? null
+      : borrowFormData.getIsbn().trim();
 
     Set<Book> books = bookService.findBooksByIsbn(sanitizedIsbn);
     if (books.isEmpty()) {
