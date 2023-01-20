@@ -28,16 +28,17 @@ public class BorrowBook {
   // *** W H E N *****s
   // *****************
 
-  @When("{string} borrows the book(s) {string}")
-  public void whenUseruserBorrowsTheBookisbn(String user, String isbns) {
-    doWithEach(
-        isbns,
-        (isbn) -> {
-          seleniumAdapter.gotoPage(Page.BORROWBOOK);
-          seleniumAdapter.typeIntoField("email", user);
-          seleniumAdapter.typeIntoField("isbn", isbn);
-          seleniumAdapter.clickOnPageElement(PageElement.BORROWBOOKBUTTON);
-        });
+  @When("{string} borrows the books {string}")
+  public void whenUseruserBorrowsBooksWithisbns(String user, String isbns) {
+    doWithEach(isbns, (isbn) -> whenUseruserBorrowsTheBookWithisbn(user, isbn));
+  }
+
+  @When("{string} borrows the book {string}")
+  public void whenUseruserBorrowsTheBookWithisbn(String user, String isbn) {
+        seleniumAdapter.gotoPage(Page.BORROWBOOK);
+        seleniumAdapter.typeIntoField("email", user);
+        seleniumAdapter.typeIntoField("isbn", isbn);
+        seleniumAdapter.clickOnPageElement(PageElement.BORROWBOOKBUTTON);
   }
 
   // *****************

@@ -41,13 +41,15 @@ public class BorrowBookController {
     if (result.hasErrors()) {
       return BORROW;
     }
-    Set<Book> books = bookService.findBooksByIsbn(borrowFormData.getIsbn());
+    String sanitizedIsbn = borrowFormData.getIsbn().trim();
+
+    Set<Book> books = bookService.findBooksByIsbn(sanitizedIsbn);
     if (books.isEmpty()) {
       result.rejectValue("isbn", "noBookExists");
       return BORROW;
     }
     Optional<Borrowing> borrowing =
-        bookService.borrowBook(borrowFormData.getIsbn(), borrowFormData.getEmail());
+        bookService.borrowBook(sanitizedIsbn, borrowFormData.getEmail());
 
     return borrowing
         .map(b -> "home")

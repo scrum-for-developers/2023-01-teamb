@@ -73,6 +73,21 @@ class BorrowBookControllerTest {
   }
 
   @Test
+  void shouldAcceptBorrowingIfIsbnIncludesTrailingOrLeadingWhitespaces() {
+    // given
+    bookBorrowFormData.setEmail(BORROWER_EMAIL);
+    bookBorrowFormData.setIsbn(" " + TEST_BOOK.getIsbn() + " ");
+
+    when(bookService.findBooksByIsbn(TEST_BOOK.getIsbn())).thenReturn(Collections.singleton(TEST_BOOK));
+
+    // when
+    borrowBookController.processSubmit(bookBorrowFormData, bindingResult);
+
+    // then
+    verify(bookService, times(1)).borrowBook(TEST_BOOK.getIsbn(), BORROWER_EMAIL);
+  }
+
+  @Test
   void shouldRejectAlreadyBorrowedBooks() {
     bookBorrowFormData.setEmail(BORROWER_EMAIL);
     bookBorrowFormData.setIsbn(TEST_BOOK.getIsbn());

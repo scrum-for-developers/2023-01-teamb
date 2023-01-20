@@ -14,3 +14,11 @@ Feature: Borrowing borrowed and available books
             | allIsbn                          | user          | borrowedIsbns | message                       |
             | 0552131075 0321293533 1234567962 | user@test.com | 1234567962    | The book is already borrowed. |
 
+
+    Scenario: Borrowing books while entering isbn with leading or trailing whitespaces works
+
+      Given a library, containing only books with isbns "0552131075 0321293533 1234567962"
+
+      When "whitespace-lover@leertaste.org" borrows the book " 0321293533 "
+
+      Then the booklist lists "whitespace-lover@leertaste.org" as borrower only for the books with isbns "0321293533"
