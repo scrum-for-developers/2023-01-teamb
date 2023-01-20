@@ -45,7 +45,7 @@ public class InsertBookController {
               bookDataFormData.getTitle(),
               bookDataFormData.getAuthor(),
               bookDataFormData.getEdition(),
-              bookDataFormData.getIsbn(),
+              bookDataFormData.getIsbn().trim(),
               Integer.parseInt(bookDataFormData.getYearOfPublication()));
       if (book.isPresent()) {
         Book newBook = book.get();

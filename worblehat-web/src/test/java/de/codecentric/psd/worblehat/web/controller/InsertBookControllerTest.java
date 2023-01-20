@@ -81,6 +81,24 @@ class InsertBookControllerTest {
     assertThat(navigateTo, is("insertBooks"));
   }
 
+  @Test
+  void shouldInsertBookWithoutLeadingAndTrailingWhitespacesInISBNField() {
+    // given
+    bookDataFormData.setTitle(TEST_BOOK.getTitle());
+    bookDataFormData.setAuthor(TEST_BOOK.getAuthor());
+    bookDataFormData.setEdition(TEST_BOOK.getEdition());
+    bookDataFormData.setIsbn(" " + TEST_BOOK.getIsbn() + " ");
+    bookDataFormData.setYearOfPublication(String.valueOf(TEST_BOOK.getYearOfPublication()));
+
+    when(bookService.createBook(any(), any(), any(), any(), anyInt())).thenReturn(Optional.of(TEST_BOOK));
+
+    // when
+    insertBookController.processSubmit(bookDataFormData, bindingResult);
+
+    // then
+    verifyBookIsCreated();
+  }
+
   private void verifyBookIsCreated() {
     verify(bookService)
         .createBook(

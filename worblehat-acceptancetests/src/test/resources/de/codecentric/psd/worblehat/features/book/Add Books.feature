@@ -24,6 +24,14 @@ Feature: Adding a new book to the library
 
       Then the booklist shows that book with "title" as "  X  "
 
+   Scenario: Adding a book with whitespace tailing or leading the ISBN
+
+     Given an empty library
+
+     When a librarian adds a random book and the "isbn" of that book is " 123456789X "
+
+     Then the booklist shows the book with the ISBN "123456789X"
+
 
     Scenario Outline: There can be multiple copies of the same book with the same ISBN
 

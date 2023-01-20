@@ -64,6 +64,14 @@ public class BookList {
     }
   }
 
+  @Then("the booklist shows the book with the ISBN {string}")
+  public void bookIsListedWithSpecificIsbn(String isbn) {
+    seleniumAdapter.gotoPage(Page.BOOKLIST);
+    HtmlBookList htmlBookList = seleniumAdapter.getTableContent(PageElement.BOOKLIST);
+    HtmlBook htmlBook = htmlBookList.getBookByIsbn(isbn);
+    assertThat(htmlBook, is(not(nullValue())));
+  }
+
   @Then("The library contains no books")
   public void libraryIsEmpty() {
     seleniumAdapter.gotoPage(Page.BOOKLIST);
