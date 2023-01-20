@@ -31,5 +31,12 @@
         WB-104: Verbesserte Fehlermeldungen
       </action>
     </release>
+
+    <release version="1.2.0" date="2023-01-20"
+             description="Release with support for ISBN13 (in addition to ISBN10)">
+      <action dev="sun developers" type="update">
+        WB-117: ISBN 13-stellig
+      </action>
+    </release>
 	</body>
 </document>
